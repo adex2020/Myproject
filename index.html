@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Calculator</title>
+    <style>
+        body{
+            background-color: hsl( 170, 50%, 50%);
+            color: hsl(3, 50%, 50%);
+        }
+        .title{
+            text-align: center;
+        }
+        @media screen and (min-width:768px){
+            [class*="col-"]{
+                width: 100%;
+            }
+        }
+        .container{
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 10px 10px 5px 4px lightblue;
+            background-color: blue;
+            margin-top: 180px;
+            margin-left: 400px;
+            height: 200px;
+            width: 750px;
+            justify-content: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .headers{
+            padding-top: 20px;
+        }
+        input{
+            width: 80px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: 2px solid gold;
+        }
+        button{
+            margin-top: 20px;
+            padding: 10px;
+            width: 100px;
+            background-color: green;
+            border-radius: 10px;
+            color: white;
+            border: 1px solid white;
+            cursor: pointer;
+        }
+        button :hover{
+            background-color: antiquewhite;
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const calculateAgeYear = () =>{
+            var FromYear = parseInt(document.getElementById("FromYear").value);
+            var FromMonth = parseInt(document.getElementById("FromMonth").value);
+            var FromDay = parseInt(document.getElementById("FromDay").value);
+
+            //current date
+            var today = new Date();
+            var ToYear = today.getFullYear();
+            var ToMonth = today.getMonth() + 1;
+            var ToDay = today.getDay();
+            var years, months, days;
+
+            //months
+            months = ToMonth - FromMonth;
+            if(ToDay < FromDay){
+                months = months - 1;
+            }
+
+            //years
+            years = ToYear - FromYear;
+            if(ToMonth < FromMonth){
+                years = years -1;
+                months = months + 12;
+            }
+            //days
+            days = Math.floor(31 - (FromDay + years, FromMonth + months - 1, FromDay));
+            //answer mode
+            var answer = years + "years," + months + "months," + days + "days.";
+
+        //post answer
+        document.getElementById("result").textContent = answer;
+        return {years: years, months: months, days: days};
+        }
+    </script>
+    <div class="title"><marquee>
+        <h1> AGE CALCULATOR</h1></marquee>
+    </div>
+    <div class="container">
+        <table class="headers"> 
+            <tbody class="tablebody">
+                <tr class="header">
+                    <th>&nbsp;</th>
+                    <th>Year</th>
+                    <th>Month</th>
+                    <th>Day</th>
+                </tr>
+                <tr>
+                    <th>Birth Date</th>
+                    <td> <input id="FromYear" placeholder="YYYY" value=""></td>
+                    <td> <input id="FromMonth" placeholder="MM" value=""></td>
+                    <td> <input id="FromDay" placeholder="DD" value=""></td>
+                </tr>
+
+                <tr>
+                    <th colspan="4">
+                        <button id="calculateAgeYear" onclick="calculateAgeYear()">Calculate</button>
+                    </th>
+                    <tr aria-colspan="4">
+                        <th>You Are: <div id="result"></div></th>
+                    </tr>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <script src="index.js"></script>
+</body>
+</html>
